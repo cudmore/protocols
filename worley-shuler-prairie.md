@@ -10,7 +10,7 @@ Use the big white switch on right-hand side of rack.
  2. Prairie Canvas (Igor Pro) : To construct a canvas of video and 2p images
  3. Putty : To login to Raspberry Pi treadmill
  4. VirtualDub : To view a live video feed from Raspberry Pi camera. Turn on video feed with 'File - Capture AVI'
- 5. Matlab : To view real-time feed of scope video camera and import into Pririe Canvas
+ 5. bCapture.m (Matlab) : To view real-time feed of scope video camera and import into Prairie Canvas
  6. Web browser to control treadmill
  
 ## Raw data from Prairie
@@ -25,10 +25,12 @@ It is important that Prairie View saves files to a solid-state drive. If saving 
  - Open PrairieCanvas.ipf (desktop shortcut). Should open in Igor Pro 7
  - Click on empty command window to activate menus
  - Select menu 'Canvas - Load User' and select 'cudmore_prairie.txt' file.
- - Each time you mount a new mouse, set a new 'session id'
- - When your finished with an imaging session, click 'Finalize and Clear Canvas'
+ - Enter a 'Session ID' and click 'Initialize session'. This will bring up a canvas where both video snapshots and 2p images will be imported. There is no explicit 'save canvas', the canvas is saved each time either video and/or 2p stacks are imported. Each time you mount a new mouse on the scope, set a new 'session id'. If you mount the same mouse twice in one day, append 'a', 'b', 'c' to the session id.
+ - When your finished with an imaging session, click 'Finalize and Clear mp285 Canvas'
 
-Prairie user configurations are in the main Map Manager folder at 'F:\cudmore:apps:bJHU:MapManager_Options:Users:scope:cudmore_prairie.txt'.
+Prairie user configurations specify user defaults including the save path and are in the main Map Manager folder at 'F:\cudmore:apps:bJHU:MapManager_Options:Users:scope:cudmore_prairie.txt'.
+
+**Important**. When you click 'Initialize Session', ensure both the save path and file names are set correctly n Prtairie View. Verify this for both the Z-Series and T-Series tab. If one of them is correct, the others should also be correct.
 
 ## Matlab video
 
@@ -38,33 +40,37 @@ run bCapture.m found in f:\cudmore\matlabVideo\bCapture.m
 
 I have added this path to matlab 2013b: f:\cudmore\matlabVideo
 
-This will save an image every 0.5 seconds into f:\cudmore\tmp\myfirstimage.tif
+This script will open a live feed of the video camera on top of the scope and will save an average image (taken from 3 snapshots) every 0.2 seconds into f:\cudmore\tmp\myfirstimage.tif
 
-Igor canvas can then load this
+Igor canvas can then load this video image into a canvas
+
+**Important**. If the live vido feed fails, you need to close the window and reopen it by typing bCapture at Matlab command prompt. If this still does not work, unplug the camera USB, reinsert USB and try again. When the live video fails you can visually see this as the specle noise of the video will stop being noticeable.
 
 
 ## Hooking up treadmill
 
- 1. 3x BNC should be plugged in to Prairie BNC breakout
+1. Attach red/male/motor ethernet cable to female/motor ethernet on the treadmill imaging platform
+2. Attach green/male/led ethernet cable to female/led ethernet on the treadmill imaging platform
+3. Plug in the 12v AC/DC adapter near the Raspberry Pi. **IMPORTANT**. Only plug this in when the red/male/motor ethernet is attached.
+
+## Tearing down the treadmill
+
+1. Unplug the 12v AC/DC adapter near the raspberry Pi
+2. Unplug both red/motor and green/led ethernet cables from the treadmill imaging platform.
+
+## One time hookup of Raspberry Pi (treadmill computer system) to scope and main Prairie View imaging computer
+
+1. 3x BNC should be plugged in to Prairie BNC breakout
     - **Trig 1 In**, first (left) on treadmill rat-nest. Purpose: Allow treadmill to trigger Prairie View
     - **PCI-6052E AI0**, there is a t-splitter, second (middle) on treadmill rat-nest. Purpose: Allow Prairie View to record the frame clock which passes through Treadmill
     - **PCI-6052E AI1**, third (right) on treadmill rat-nest. Purpose: Allow Prairie View to record status of motor
 
-2. 2x ethernet cables
-    - 1st, red, motor, red
-    - 2nd, green, ir led and encoder (encoder not used)
-
-3. 1x USB dongle
+2. 1x USB dongle
     - USB dongle from rats-nest to usb port on computer. Purpose: View video feed from camera on computer with Virtual Dub
-
-4. IMPORTANT: DO this last. Plug in 12v ac/dc on rat-nest
-    Purpose: This is motor and ir led power.
-    If motor cable (red ethernet) is unplugged while 12v is plugged, will burn motor board
-    Always check that motor (red ethernet) is plugged in before pluggin in 12v ac/dc
 
 ## Starting treadmill software
 
-Login to pi using putty software
+Login to pi using putty software (use ssh port 22)
 
 ```
 ip: 10.16.81.61
@@ -80,14 +86,6 @@ python treadmill_app.py
 ```
 
 Then, on main computer, browse to http://10.16.81.61:5010
-
-## Tearing down treadmill
-
-1. IMPORTANT: Do this first. Unplug 12v power from rat-nest
-2. Unplug 2x ethernet from stage
-     IMPORTANT: ALways check that 12V ac/dc is unplugged before unplugging red ethernet cable
-3. Unplug BNC cables
-4. Unplug usb video cable
 
 ## Fiji
 
