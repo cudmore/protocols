@@ -1,25 +1,29 @@
 # Worley-Shuler Prairie/Bruker Scope Readme
 
-## Power up the system
+## Power up the scope
 
-Use the big white switch on right-hand side of rack.
+ - Turn on the big white switch on right-hand side of rack.
+ - Turn on the computer using button on top of computer case.
 
+## Power down the scope
+
+ - Shutdown the computer.
+ - Turn off the big white switch on right-hand side of rack.
+ 
 ## Startup software
 
  1. Prairie View : To scan 2p images
  2. Prairie Canvas (Igor Pro) : To construct a canvas of video and 2p images
  3. Putty : To login to Raspberry Pi treadmill
- 4. VirtualDub : To view a live video feed from Raspberry Pi camera. Turn on video feed with 'File - Capture AVI'
+ 4. VirtualDub : To view a live video feed from Raspberry Pi camera
  5. bCapture.m (Matlab) : To view real-time feed of scope video camera and import into Prairie Canvas
  6. Web browser to control treadmill
  
-## Raw data from Prairie
+## Running Prairie View
 
-Prairie View and the Prairie Canvas need to save files to the same folder. When you set a 'session id' in the Prairie Canvas, this is automatically set in Prairie View (assuming Prairie View program is running).
+The Prairie View software is in 'C:\Program Files\Prairie\Prairie View\Prairie View.exe'.
 
-    f:\cudmore\data
-
-It is important that Prairie View saves files to a solid-state drive. If saving to a traditional spinning-disk drive there may be image corruption.
+Turn on the laser and open the shutter in the '2-P Laser' tab.
 
 ## Running Prairie Canvas
 
@@ -32,7 +36,15 @@ It is important that Prairie View saves files to a solid-state drive. If saving 
 
 Prairie user configurations specify user defaults including the save path and are in the main Map Manager folder at 'F:\cudmore:apps:bJHU:MapManager_Options:Users:scope:cudmore_prairie.txt'.
 
-**Important**. When you click 'Initialize Session', ensure both the save path and file names are set correctly in Prairie View. Verify this for both the Z-Series and T-Series tab. If one of them is correct, the others should also be correct.
+**Important**. When you click 'Initialize Session', ensure both the save path and file names are set correctly in Prairie View. Verify this for both the Prairie View Z-Series and T-Series tab. If one of them is correct, the others should also be correct.
+
+## Saving files
+
+Prairie View and the Prairie Canvas need to save files to the same folder. This is controlled from within the Prairie Canvas. When you set a 'session id' in the Prairie Canvas, folders for todays date (yyyymmdd) and the session (yymmdd_sesisonid) are created. This path is automatically set within Prairie View (assuming it is running).
+
+    f:\cudmore\data
+
+It is important that Prairie View saves files to a solid-state drive. If saving to a traditional spinning-disk drive there may be image corruption.
 
 ## Matlab video
 
@@ -134,6 +146,8 @@ This is beyond the scope of this recipe. You are on your own.
  - Remember to turn off the laser before quiting Prairie View. Always check the laser is off by looking for the white light on the top of the laser box behind the scope.
  - Remember to check the 'Optical Zoom [mag]' when switching between 'Galvo' and 'Resonant Galvo' scanning. They are independent for each mode and do not always switch back to the last value.
  - By default, Prairie View saves files in an intermediate (raw) format that is not Tif. You need to choose if you want to convert the intermediate Prairie View format to Tif at the end of each aquisition or manually in batch mode using the 'Image Block Ripping Utility'. In general, automatic conversion at the end of acquisition works well for a small number of images like with a Z-Stack but not for longer/larger time-series (e.g. 1800 frames). The longer/larger time series conversion takes longer than the time it took to acquire the images! This option is set in Prairie View using the main menu 'Preferences - Automatically Convert Raw Files', and choosing either 'Never (Use Image-Block Ripping Utility)' or 'After Aquisition'.
+ 
+To use the 'Image-Block Ripping Utility', run it, click 'Browse..' button and select a folder with Prairie View files, turn on 'Include Sub-folders' checkbox and start conversion with 'Start Conversion ' button.
  
  
 ## Loading stacks and time-series acquired with Prairie View
