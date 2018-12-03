@@ -117,8 +117,8 @@ The video feed will only work if
 
  - **video**. Turn top nob all the way to the back (clockwise if looking at it from side of scope) and set Olympus style filter wheel to position '2'.
  - **2p**. Turn the top knowb all the way towards you (counter clockwise if looking at it from side of scope) and set the Olympus style filter wheel to position '1'.
- - In both cases, ensure the light path slider is all the way out
- - In both cases, ensure the 'shutter' is open and in the yyy position
+ - In both cases, ensure the light path slider is all the way out (camera position).
+ - In both cases, ensure the 'shutter' switch is closed (in the dark circle position).
 
 ## GAsP detectors
 
