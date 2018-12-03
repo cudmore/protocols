@@ -14,50 +14,10 @@
 
  1. Prairie View : To scan 2p images
  2. Prairie Canvas (Igor Pro) : To construct a canvas of video and 2p images
- 3. Putty : To login to Raspberry Pi treadmill
- 4. VirtualDub : To view a live video feed from Raspberry Pi camera
- 5. bCapture.m (Matlab) : To view real-time feed of scope video camera and import into Prairie Canvas
+ 3. bCapture.m (Matlab) : To view real-time feed of scope video camera and import into Prairie Canvas
+ 4. Putty : To login to Raspberry Pi treadmill
+ 5. VirtualDub : To view a live video feed from Raspberry Pi camera
  6. Web browser to control treadmill
- 
-## Running Prairie View
-
-The Prairie View software is in 'C:\Program Files\Prairie\Prairie View\Prairie View.exe'.
-
-Turn on the laser and open the shutter in the '2-P Laser' tab.
-
-## Running Prairie Canvas
-
- - Open PrairieCanvas.ipf (desktop shortcut). Should open in Igor Pro 7
- - Click on empty command window to activate menus
- - Select menu 'Canvas - Load User' and select 'cudmore_prairie.txt' file.
- - Ensure you can read Prairie View motor position with 'Read Position'. When this is working, the motor position will be filled in and the button will be green. Do not proceed until this works. If it fails, go to Prairie View and move the objective lef or right (with arrow buttons) and then try to 'Read Position' from the Prairie Canvas again.
- - Enter a 'Session ID' and click 'Initialize session'. This will bring up a canvas where both video snapshots and 2p images will be imported. There is no explicit 'save canvas', the canvas is saved each time either video and/or 2p stacks are imported. Each time you mount a new mouse on the scope, set a new 'session id'. If you mount the same mouse twice in one day, append 'a', 'b', 'c' to the session id.
- - When your finished with an imaging session, click 'Finalize and Clear mp285 Canvas'
-
-Prairie user configurations specify user defaults including the save path and are in the main Map Manager folder at 'F:\cudmore:apps:bJHU:MapManager_Options:Users:scope:cudmore_prairie.txt'.
-
-**Important**. When you click 'Initialize Session', ensure both the save path and file names are set correctly in Prairie View. Verify this for both the Prairie View Z-Series and T-Series tab. If one of them is correct, the others should also be correct.
-
-## Saving files
-
-Prairie View and the Prairie Canvas need to save files to the same folder. This is controlled from within the Prairie Canvas. When you set a 'session id' in the Prairie Canvas, folders for todays date (yyyymmdd) and the session (yymmdd_sesisonid) are created. This path is automatically set within Prairie View (assuming it is running).
-
-    f:\cudmore\data
-
-It is important that Prairie View saves files to a solid-state drive. If saving to a traditional spinning-disk drive there may be image corruption.
-
-## Matlab video
-
-Run bCapture.m found in f:\cudmore\matlabVideo\bCapture.m
-
-This script will open a live feed of the video camera on top of the scope and will save an average image (taken from 3 snapshots) every 0.2 seconds into 'f:\cudmore\tmp\myfirstimage.tif'. Igor canvas can then load this video image into a canvas
-
-**Important**. If the live vido feed fails, you need to close the window and reopen it by typing bCapture at Matlab command prompt. If this still does not work, unplug the camera USB, reinsert USB and try again. When the live video fails you can visually see this as the specle noise of the video will stop being noticeable.
-
-### Matlab video detials
-
- - Must run in matlab 2013b (desktop shortcut)
- - I have added this path to matlab 2013b: f:\cudmore\matlabVideo
 
 ## Hooking up treadmill
 
@@ -80,7 +40,48 @@ This script will open a live feed of the video camera on top of the scope and wi
 2. 1x USB dongle
     - USB dongle from rats-nest to usb port on computer. Purpose: View video feed from camera on computer with Virtual Dub
 
-## Starting treadmill software
+## 1) Running Prairie View
+
+The Prairie View software is in 'C:\Program Files\Prairie\Prairie View\Prairie View.exe'.
+
+Turn on the laser and open the shutter in the '2-P Laser' tab.
+
+## 2) Running Prairie Canvas
+
+ - Open PrairieCanvas.ipf (desktop shortcut). Should open in Igor Pro 7
+ - Click on empty command window to activate menus
+ - Select menu 'Canvas - Load User' and select 'cudmore_prairie.txt' file.
+ - Ensure you can read Prairie View motor position with 'Read Position'. When this is working, the motor position will be filled in and the button will be green. Do not proceed until this works. If it fails, go to Prairie View and move the objective lef or right (with arrow buttons) and then try to 'Read Position' from the Prairie Canvas again.
+ - Enter a 'Session ID' and click 'Initialize session'. This will bring up a canvas where both video snapshots and 2p images will be imported. There is no explicit 'save canvas', the canvas is saved each time either video and/or 2p stacks are imported. Each time you mount a new mouse on the scope, set a new 'session id'. If you mount the same mouse twice in one day, append 'a', 'b', 'c' to the session id.
+ - When your finished with an imaging session, click 'Finalize and Clear mp285 Canvas'
+
+Prairie user configurations specify user defaults including the save path and are in the main Map Manager folder at 'F:\cudmore:apps:bJHU:MapManager_Options:Users:scope:cudmore_prairie.txt'.
+
+**Important**. When you click 'Initialize Session', ensure both the save path and file names are set correctly in Prairie View. Verify this for both the Prairie View Z-Series and T-Series tab. If one of them is correct, the others should also be correct.
+
+### Saving files
+
+Prairie View and the Prairie Canvas need to save files to the same folder. This is controlled from within the Prairie Canvas. When you set a 'session id' in the Prairie Canvas, folders for todays date (yyyymmdd) and the session (yymmdd_sesisonid) are created. This path is automatically set within Prairie View (assuming it is running).
+
+    f:\cudmore\data
+
+It is important that Prairie View saves files to a solid-state drive. If saving to a traditional spinning-disk drive there may be image corruption.
+
+## 3) Matlab video with bCapture
+
+Run bCapture.m found in f:\cudmore\matlabVideo\bCapture.m
+
+This script will open a live feed of the video camera on top of the scope and will save an average image (taken from 3 snapshots) every 0.2 seconds into 'f:\cudmore\tmp\myfirstimage.tif'. Igor canvas can then load this video image into a canvas
+
+**Important**. If the live vido feed fails, you need to close the window and reopen it by typing bCapture at Matlab command prompt. If this still does not work, unplug the camera USB, reinsert USB and try again. When the live video fails you can visually see this as the specle noise of the video will stop being noticeable.
+
+### Matlab video detials
+
+ - Must run in matlab 2013b (desktop shortcut)
+ - I have added this path to matlab 2013b: f:\cudmore\matlabVideo
+
+
+## 4) Starting treadmill software (use putty to login)
 
 Login to pi using putty software (use ssh port 22)
 
@@ -101,7 +102,7 @@ Then, on main computer, browse to http://10.16.81.61:5010
 
 Make sure you include port 5010 in the address with ':5010'. Once the web interface is opened in a browser, it is easy enough to make a bookmark to return to it in the future.
 
-## VirtualDub
+## 5) VirtualDub
 
 VirtualDub is a program to play video files and display a live video feed from a USB video camera. Once VirtualDub is opened, start a live video feed using 'File - Capture AVI...' and select the correct USB camera with 'Select a Video Device' popup. This is usually 'USB2.0 ATV'.
 
@@ -169,7 +170,7 @@ Alternatively, see [bPrairie2Tif](https://github.com/cudmore/bob-fiji-plugins/bl
 
 ## Video camera to image surface vasculature (on top of the scope)
 
-### New camera for surface plus IOS imaging
+### New camera
 
 DMK 33UX174 (5710179)
 
