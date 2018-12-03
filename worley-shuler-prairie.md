@@ -87,6 +87,16 @@ python treadmill_app.py
 
 Then, on main computer, browse to http://10.16.81.61:5010
 
+# Acquiring images with Prairie View
+
+This is beyond the scope of this recipe. You are on your own.
+
+## Turning the laser on/off with Prairie View
+
+ - Turn on laser in '2-P Laser' tab
+ - Open the laser shutter in '2-P Laser' tab
+ - **Important**. At the end of imaging, be sure to turn off the 2P laser (using '2-P Laser' tab) before exiting Prairie View software. When the laser is on, the soft white light on top of the actual laser box (behind the scope) will be on. Always check this to verify you have turned off the laser. If you forget to turn off the laser, you need to run Prairie View again and turn it off in the '2-P Laser' tab.
+ 
 ## Fiji
 
 Prairie View saves all acquired images in individual Tiff files, it does not ever save a single Tiff stack. Prairie View saves all acquisition parameters into an xml file.
