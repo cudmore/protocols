@@ -22,40 +22,40 @@ Prairie View and the Prairie Canvas need to save files to the same folder. When 
 It is important that Prairie View saves files to a solid-state drive. If saving to a traditional spinning-disk drive there may be image corruption.
 
 ## Running Prairie Canvas
+
  - Open PrairieCanvas.ipf (desktop shortcut). Should open in Igor Pro 7
  - Click on empty command window to activate menus
  - Select menu 'Canvas - Load User' and select 'cudmore_prairie.txt' file.
+ - Ensure you can read Prairie View motor position with 'Read Position'. When this is working, the motor position will be filled in and the button will be green. Do not proceed until this works. If it fails, go to Prairie View and move the objective lef or right (with arrow buttons) and then try to 'Read Position' from the Prairie Canvas again.
  - Enter a 'Session ID' and click 'Initialize session'. This will bring up a canvas where both video snapshots and 2p images will be imported. There is no explicit 'save canvas', the canvas is saved each time either video and/or 2p stacks are imported. Each time you mount a new mouse on the scope, set a new 'session id'. If you mount the same mouse twice in one day, append 'a', 'b', 'c' to the session id.
  - When your finished with an imaging session, click 'Finalize and Clear mp285 Canvas'
 
 Prairie user configurations specify user defaults including the save path and are in the main Map Manager folder at 'F:\cudmore:apps:bJHU:MapManager_Options:Users:scope:cudmore_prairie.txt'.
 
-**Important**. When you click 'Initialize Session', ensure both the save path and file names are set correctly n Prtairie View. Verify this for both the Z-Series and T-Series tab. If one of them is correct, the others should also be correct.
+**Important**. When you click 'Initialize Session', ensure both the save path and file names are set correctly in Prairie View. Verify this for both the Z-Series and T-Series tab. If one of them is correct, the others should also be correct.
 
 ## Matlab video
 
-Must run in matlab 2013b (desktop shortcut)
+Run bCapture.m found in f:\cudmore\matlabVideo\bCapture.m
 
-run bCapture.m found in f:\cudmore\matlabVideo\bCapture.m
-
-I have added this path to matlab 2013b: f:\cudmore\matlabVideo
-
-This script will open a live feed of the video camera on top of the scope and will save an average image (taken from 3 snapshots) every 0.2 seconds into f:\cudmore\tmp\myfirstimage.tif
-
-Igor canvas can then load this video image into a canvas
+This script will open a live feed of the video camera on top of the scope and will save an average image (taken from 3 snapshots) every 0.2 seconds into 'f:\cudmore\tmp\myfirstimage.tif'. Igor canvas can then load this video image into a canvas
 
 **Important**. If the live vido feed fails, you need to close the window and reopen it by typing bCapture at Matlab command prompt. If this still does not work, unplug the camera USB, reinsert USB and try again. When the live video fails you can visually see this as the specle noise of the video will stop being noticeable.
 
+### Matlab video detials
+
+ - Must run in matlab 2013b (desktop shortcut)
+ - I have added this path to matlab 2013b: f:\cudmore\matlabVideo
 
 ## Hooking up treadmill
 
 1. Attach red/male/motor ethernet cable to female/motor ethernet on the treadmill imaging platform
 2. Attach green/male/led ethernet cable to female/led ethernet on the treadmill imaging platform
-3. Plug in the 12v AC/DC adapter near the Raspberry Pi. **IMPORTANT**. Only plug this in when the red/male/motor ethernet is attached.
+3. Plug in the 12v AC/DC adapter near the Raspberry Pi. **IMPORTANT**. Only plug this in after the ethernet is attached.
 
 ## Tearing down the treadmill
 
-1. Unplug the 12v AC/DC adapter near the raspberry Pi
+1. Unplug the 12v AC/DC adapter near the raspberry Pi. **Important**. Always unplug 12v AC/DC BEFORE you unplug ethernet.
 2. Unplug both red/motor and green/led ethernet cables from the treadmill imaging platform.
 
 ## One time hookup of Raspberry Pi (treadmill computer system) to scope and main Prairie View imaging computer
@@ -89,13 +89,23 @@ Then, on main computer, browse to http://10.16.81.61:5010
 
 ## Fiji
 
+Prairie View saves all acquired images in individual Tiff files, it does not ever save a single Tiff stack. Prairie View saves all acquisition parameters into an xml file.
+
+### Loading image stacks and time-series
+
+See [bPrairie2Tif](https://github.com/cudmore/bob-fiji-plugins/blob/master/bPrairie2tif.v0.0_.py) for a script to convert individual Tiff files saved by Prarie View into single Tiff stack Tiff. This script can be used to easily convert Prairie View images into a format that can easily be loaded into Map Manager for offline analysis.
+
+Alternatively, in Fiji, drag and drop the Prairie View xml file and if your lucky it will open as a single image Tiff stack.
+
 ### Loading line scans
 
 Load line scan with 'Plugins - Bio-Formats - Bio-Formats Importer and select .xml file in line scan folder
 
 
 
-## Video camera to image surface vasculature
+# Hardware details
+
+## Video camera to image surface vasculature (on top of the scope)
 
 ### New camera for surface plus IOS imaging
 
@@ -131,7 +141,7 @@ Accorind to wikipedia: https://en.wikipedia.org/wiki/Image_sensor_format
 1/1.2", width:10.67, height: 8.00, diagonal: 13.33
 
 
-## Building issues (e.g. cooling)
+# Building issues (e.g. cooling)
 
 This is part of the building and should be non-chargeable.  This email address is only set up for M&S (billable) work.  All regular maintenance issues are more quickly handled thru Customer Service @ 5-3323, they are available 24/7. If there is aproblem with building (usually cooling), do not email facworkrequest@jhmi.edu but call instead.
 
