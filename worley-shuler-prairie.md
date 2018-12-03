@@ -98,6 +98,24 @@ The video feed will only work if
  - The Raspberry Pi (output headphone jack) is connected to an analog video to USB converter.
  - The Raspberry Pi is running the treadmill software.
  
+# Using the scope hardware
+
+## Switching between video and 2p light path
+
+ - **video**. Turn top nob all the way to the back (clockwise if looking at it from side of scope) and set Olympus style filter wheel to position '2'.
+ - **2p**. Turn the top knowb all the way towards you (counter clockwise if looking at it from side of scope) and set the Olympus style filter wheel to position '1'.
+ - In both cases, ensure the light path slider is all the way out
+ - In both cases, ensure the 'shutter' is open and in the yyy position
+
+## GAsP detectors
+
+ - The GAsP detectors have a control box directly below the main computer keyboard. There are lots of switches and 1-2 dials. The only thing I do is ensure the detectors are on using the vertical toggle switch 'PMT Power On/Off'.
+ - If the detectors every receive too much light, an audible (and annoying) alarm will go off. Silence the alarm by cycling the detector power off then on again. Be sure to reduce your laser power and/or detector gain a bit if this happens repeatedly.
+ 
+## Pockels Cell
+
+The Pockels cell controller is above the monitor. IT is a box labeled 'conoptics model 302RM'. Ensure this is powered on.
+
 # Acquiring images with Prairie View
 
 This is beyond the scope of this recipe. You are on your own.
@@ -108,13 +126,15 @@ This is beyond the scope of this recipe. You are on your own.
  - Open the laser shutter in '2-P Laser' tab
  - **Important**. At the end of imaging, be sure to turn off the 2P laser (using '2-P Laser' tab) before exiting Prairie View software. When the laser is on, the soft white light on top of the actual laser box (behind the scope) will be on. Always check this to verify you have turned off the laser. If you forget to turn off the laser, you need to run Prairie View again and turn it off in the '2-P Laser' tab.
 
-## Common Prairie View problems
+## Prairie View considerations
 
- - If you want to set laser power as a function of depth, make sure 'Adjust PMT & Laser' is checked bfore setting the Start/Stop position. This option is always off when Prairie View is first run.
+ - If you want to set laser power as a function of depth, make sure 'Adjust PMT & Laser' is checked before setting the Start/Stop position. This option is always off when Prairie View is first run. Do not try to turn this on in the middle of setting the start/stop z-plane.
  - After each Z-Stack, be sure to press Start Position 'Goto' to set the laser power to that of the actual start posiiton. At the end of a Z-Stack acquisition, the objective is moved back to the 'start position' but if using 'Adjust PMT & Laser', the laser power is left at its 'stop position' value.
  - If triggering Prairie View as a slave from the Treadmill web interface, ensure 'Start with input trigger' is checked and press 'Start T-Series'. Prairie view will then wait for an imput trigger that is sent by the treadmill when 'Start Trial' is pressed in the web interface.
  - Remember to turn off the laser before quiting Prairie View. Always check the laser is off by looking for the white light on the top of the laser box behind the scope.
  - Remember to check the 'Optical Zoom [mag]' when switching between 'Galvo' and 'Resonant Galvo' scanning. They are independent for each mode and do not always switch back to the last value.
+ - By default, Prairie View saves files in an intermediate (raw) format that is not Tif. You need to choose if you want to convert the intermediate Prairie View format to Tif at the end of each aquisition or manually in batch mode using the 'Image Block Ripping Utility'. In general, automatic conversion at the end of acquisition works well for a small number of images like with a Z-Stack but not for longer/larger time-series (e.g. 1800 frames). The longer/larger time series conversion takes longer than the time it took to acquire the images! This option is set in Prairie View using the main menu 'Preferences - Automatically Convert Raw Files', and choosing either 'Never (Use Image-Block Ripping Utility)' or 'After Aquisition'.
+ 
  
 ## Loading stacks and time-series acquired with Prairie View
 
