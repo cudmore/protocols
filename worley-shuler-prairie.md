@@ -87,6 +87,15 @@ python treadmill_app.py
 
 Then, on main computer, browse to http://10.16.81.61:5010
 
+## VirtualDub
+
+VirtualDub is a program to play video files and display a live video feed from a USB video camera. Once VirtualDub is opened, start a live video feed using 'File - Capture AVI...' and select the correct USB camera with 'Select a Video Device' popup. This is usually 'USB2.0 ATV'.
+
+The video feed will only work if
+
+ - The Raspberry Pi (output headphone jack) is connected to an analog video to USB converter.
+ - The Raspberry Pi is running the treadmill software.
+ 
 # Acquiring images with Prairie View
 
 This is beyond the scope of this recipe. You are on your own.
