@@ -135,7 +135,7 @@ https://pro.sony.com/bbsc/ssr/product-XCST30/
 
 ### Comparing sensor sizes
 
-Accorind to wikipedia: https://en.wikipedia.org/wiki/Image_sensor_format
+According to wikipedia: https://en.wikipedia.org/wiki/Image_sensor_format
 
 1/3", width:4.8, height: 3.6, diagonal: 6.0
 1/1.2", width:10.67, height: 8.00, diagonal: 13.33
