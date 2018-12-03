@@ -87,6 +87,8 @@ python treadmill_app.py
 
 Then, on main computer, browse to http://10.16.81.61:5010
 
+Make sure you include port 5010 in the address with ':5010'. Once the web interface is opened in a browser, it is easy enough to make a bookmark to return to it in the future.
+
 ## VirtualDub
 
 VirtualDub is a program to play video files and display a live video feed from a USB video camera. Once VirtualDub is opened, start a live video feed using 'File - Capture AVI...' and select the correct USB camera with 'Select a Video Device' popup. This is usually 'USB2.0 ATV'.
@@ -105,21 +107,28 @@ This is beyond the scope of this recipe. You are on your own.
  - Turn on laser in '2-P Laser' tab
  - Open the laser shutter in '2-P Laser' tab
  - **Important**. At the end of imaging, be sure to turn off the 2P laser (using '2-P Laser' tab) before exiting Prairie View software. When the laser is on, the soft white light on top of the actual laser box (behind the scope) will be on. Always check this to verify you have turned off the laser. If you forget to turn off the laser, you need to run Prairie View again and turn it off in the '2-P Laser' tab.
+
+## Common Prairie View problems
+
+ - If you want to set laser power as a function of depth, make sure 'Adjust PMT & Laser' is checked bfore setting the Start/Stop position. This option is always off when Prairie View is first run.
+ - After each Z-Stack, be sure to press Start Position 'Goto' to set the laser power to that of the actual start posiiton. At the end of a Z-Stack acquisition, the objective is moved back to the 'start position' but if using 'Adjust PMT & Laser', the laser power is left at its 'stop position' value.
+ - If triggering Prairie View as a slave from the Treadmill web interface, ensure 'Start with input trigger' is checked and press 'Start T-Series'. Prairie view will then wait for an imput trigger that is sent by the treadmill when 'Start Trial' is pressed in the web interface.
+ - Remember to turn off the laser before quiting Prairie View. Always check the laser is off by looking for the white light on the top of the laser box behind the scope.
+ - Remember to check the 'Optical Zoom [mag]' when switching between 'Galvo' and 'Resonant Galvo' scanning. They are independent for each mode and do not always switch back to the last value.
  
-## Fiji
+## Loading stacks and time-series acquired with Prairie View
 
-Prairie View saves all acquired images in individual Tiff files, it does not ever save a single Tiff stack. Prairie View saves all acquisition parameters into an xml file.
+Prairie View saves all acquired images in individual Tiff files, it does not ever save a single Tiff stack or time-series. In addition, Prairie View saves all acquisition parameters into an xml file.
 
-### Loading image stacks and time-series
+### Loading Prairie View images into the Prairie Canvas
 
-See [bPrairie2Tif](https://github.com/cudmore/bob-fiji-plugins/blob/master/bPrairie2tif.v0.0_.py) for a script to convert individual Tiff files saved by Prarie View into single Tiff stack Tiff. This script can be used to easily convert Prairie View images into a format that can easily be loaded into Map Manager for offline analysis.
+The Prairie Canvas will automatically load native Prairie View files with no conversion needed. This can be done while imaging on the Prairie/Bruker scope and offline using Map Manager on any analysis machine.
 
-Alternatively, in Fiji, drag and drop the Prairie View xml file and if your lucky it will open as a single image Tiff stack.
+### Loading Prairie View images in other programs
 
-### Loading line scans
+Drag and drop the Prairie View xml file onto Fiji and if your lucky it will open as a single image Tiff stack.
 
-Load line scan with 'Plugins - Bio-Formats - Bio-Formats Importer and select .xml file in line scan folder
-
+Alternatively, see [bPrairie2Tif](https://github.com/cudmore/bob-fiji-plugins/blob/master/bPrairie2tif.v0.0_.py) for a script to convert individual Tiff files saved by Prarie View into single Tiff files. This will work for both z-stacks and for time-series images. This script converts Prairie View images into a format that can be loaded into the Prairie Canvas or offline into Map Manager. One added bonus is this automatically sets the voxel size by reading the Prairie View xml acquisition parameters.
 
 
 # Hardware details
@@ -160,7 +169,7 @@ According to wikipedia: https://en.wikipedia.org/wiki/Image_sensor_format
 1/1.2", width:10.67, height: 8.00, diagonal: 13.33
 
 
-# Building issues (e.g. cooling)
+# Building/Room issues (e.g. cooling)
 
 This is part of the building and should be non-chargeable.  This email address is only set up for M&S (billable) work.  All regular maintenance issues are more quickly handled thru Customer Service @ 5-3323, they are available 24/7. If there is aproblem with building (usually cooling), do not email facworkrequest@jhmi.edu but call instead.
 
@@ -180,7 +189,12 @@ Install socket for Igor 6 using
 
 ## Have Prairie View send REST command to treadmill webserver
 
-This will only work if 'after scan' is specified in 'misc' tab of Prairie View.
+This will only work if 'after scan' is set to 'bob_eos' in Prairie View. See 'Mic Tab - Actions To Perform - After Scan.
+
+'bob_eos' is a Windows batch file with the following
+
+```
+```
 
 Have Prairie View send rest command with name of file to treadmill web server. Prairie View sends this at start of scan. Assuming treadmill is master, and a trial is running on treadmill. Treadmill saves the Prairie View file name (and many other things) in a .txt file at end of trial. Offline we can then load a treadmill trial .txt file and know which prairie view file (folder) to associate with it.
 
