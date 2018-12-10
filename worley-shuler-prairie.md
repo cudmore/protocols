@@ -171,7 +171,20 @@ Drag and drop the Prairie View xml file onto Fiji and if your lucky it will open
 
 Alternatively, see [bPrairie2Tif](https://github.com/cudmore/bob-fiji-plugins/blob/master/bPrairie2tif.v0.0_.py) for a script to convert individual Tiff files saved by Prarie View into single Tiff files. This will work for both z-stacks and for time-series images. This script converts Prairie View images into a format that can be loaded into the Prairie Canvas or offline into Map Manager. One added bonus is this automatically sets the voxel size by reading the Prairie View xml acquisition parameters.
 
+# Troubleshooting
 
+If you don't get a two-photon image
+
+ - Is the laser on, the shutter open, and the wavelength set to 920 for GFP? Check Prairie View '2-P Laser' tab.
+ - Is the Prairie View laser power and PMT gains set properly? Check the Prairie View 'Power/Gain' tab and ensure the Pockels has power (surface is 160-220, may is ~460) and the Red/Green PMT have gain, somewhere between 575-610.
+ - Is the light path on the scope set to 2p mode? Ensure top black knob is all the way to the front (counter-clockwise while looking at scope from right) and the olympus filter turret is in position '1'.
+ - Are the PMT's power on? Check the pmt power switch on the 'GaAsP detector control box' (below keyboard).
+ - Is prairie view displaying the color channel you are interested in? Check the color buttons in the Prairie View 'Image Window - 1' and 'Image Window - 2'.
+ - Is the Pockels cell on? Ensure the 'conoptics model 302RM' box is on (above monitor).
+ - Is your focus within an area you would expect to excite some fluorophore?
+ - Is the objective still submerged in water? Visually check this.
+ 
+ 
 # Hardware details
 
 ## Video camera to image surface vasculature (on top of the scope)
