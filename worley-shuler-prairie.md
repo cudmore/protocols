@@ -21,11 +21,15 @@
 
 ## Hooking up treadmill
 
+The order is**CRITICAL**. Attach the red/green ethernet and then plug-in the 12v AC/DC. Never have the 12v AC/DC plugged in without having the ethernet plugged in. If 12v AC/DC is plugged in without ethernet, the motor controller board will be permanently damaged and no longer function. This is the way the [Easy Driver](https://www.sparkfun.com/products/12779) motor controller works, sorry.
+
 1. Attach red/male/motor ethernet cable to female/motor ethernet on the treadmill imaging platform
 2. Attach green/male/led ethernet cable to female/led ethernet on the treadmill imaging platform
 3. Plug in the 12v AC/DC adapter near the Raspberry Pi. **IMPORTANT**. Only plug this in after the ethernet is attached.
 
 ## Tearing down the treadmill
+
+The order is**CRITICAL**. Un-plug the 12v AC/DC and then unplug the red/green ethernet. Never have the 12v AC/DC plugged in without having the ethernet plugged in. If 12v AC/DC is plugged in without ethernet, the motor controller board will be permanently damaged and no longer function. This is the way the [Easy Driver](https://www.sparkfun.com/products/12779) motor controller works, sorry.
 
 1. Unplug the 12v AC/DC adapter near the raspberry Pi. **Important**. Always unplug 12v AC/DC BEFORE you unplug ethernet.
 2. Unplug both red/motor and green/led ethernet cables from the treadmill imaging platform.
