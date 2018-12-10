@@ -52,7 +52,7 @@ Turn on the laser and open the shutter in the '2-P Laser' tab.
 
 ## 2) Running Prairie Canvas
 
- - Open PrairieCanvas.ipf (desktop shortcut). Should open in Igor Pro 7
+ - Open PrairieCanvas.ipf (desktop shortcut). Should open in Igor Pro 7. The original file is in 'F:\cudmore\apps\bJHU\PrairieCanvas.ipf'.
  - Click on empty command window to activate menus
  - Select menu 'Canvas - Load User' and select 'cudmore_prairie.txt' file.
  - Ensure you can read Prairie View motor position with 'Read Position'. When this is working, the motor position will be filled in and the button will be green. Do not proceed until this works. If it fails, go to Prairie View and move the objective lef or right (with arrow buttons) and then try to 'Read Position' from the Prairie Canvas again.
@@ -67,27 +67,27 @@ Prairie user configurations specify user defaults including the save path and ar
 
 Prairie View and the Prairie Canvas need to save files to the same folder. This is controlled from within the Prairie Canvas. When you set a 'session id' in the Prairie Canvas, folders for todays date (yyyymmdd) and the session (yymmdd_sesisonid) are created. This path is automatically set within Prairie View (assuming it is running).
 
-    f:\cudmore\data
+    e:\cudmore\data
 
 It is important that Prairie View saves files to a solid-state drive. If saving to a traditional spinning-disk drive there may be image corruption.
 
 ## 3) Matlab video with bCapture
 
-Run bCapture.m found in f:\cudmore\matlabVideo\bCapture.m
+Open bCapture.m found in 'f:\cudmore\matlabVideo\bCapture.m' and type 'bCapture' at the Matlab command prompt.
 
-This script will open a live feed of the video camera on top of the scope and will save an average image (taken from 3 snapshots) every 0.2 seconds into 'f:\cudmore\tmp\myfirstimage.tif'. Igor canvas can then load this video image into a canvas
+The bCapture script will open a live feed of the video camera (the one on top of the scope) and will save an average image (taken from 3 snapshots) every 0.2 seconds into 'f:\cudmore\tmp\myfirstimage.tif'. Igor canvas can then load this video image into a canvas. The Igor Canvas assumes it will find the saved video snapshots in this folder, if you change the save folder in the Matlab script, you need to change the code in Igor.
 
-**Important**. If the live vido feed fails, you need to close the window and reopen it by typing bCapture at Matlab command prompt. If this still does not work, unplug the camera USB, reinsert USB and try again. When the live video fails you can visually see this as the specle noise of the video will stop being noticeable.
+**Important**. If the live vido feed fails, you need to close the window and reopen it by typing 'bCapture' at Matlab command prompt. If this still does not work, unplug the camera USB, reinsert USB and try again. When the live video fails you can visually see this as the specle noise of the video will stop being noticeable.
 
 ### Matlab video detials
 
- - Must run in matlab 2013b (desktop shortcut)
- - I have added this path to matlab 2013b: f:\cudmore\matlabVideo
+ - Must run in Matlab 2013b (desktop shortcut)
+ - I have added this path to Matlab 2013b: f:\cudmore\matlabVideo
 
 
 ## 4) Starting treadmill software (use putty to login)
 
-Login to pi using putty software (use ssh port 22)
+Login to the Treadmill Raspberry Pi using putty software (use ssh port 22). The putty software is at 'F:\cudmore\apps\putty.exe' and is preconfigured with a saved session named 'treadmill' to login to the Treadmill Raspberry Pi.
 
 ```
 ip: 10.16.81.61
@@ -95,7 +95,7 @@ user: pi
 password: <ask bob>
 ```
 
-At the command prompt, type
+At the Treadmill Raspberry Pi command prompt, type
 
 ```
 cd Sites/treadmill
@@ -108,7 +108,9 @@ Make sure you include port 5010 in the address with ':5010'. Once the web interf
 
 ## 5) VirtualDub
 
-VirtualDub is a program to play video files and display a live video feed from a USB video camera. Once VirtualDub is opened, start a live video feed using 'File - Capture AVI...' and select the correct USB camera with 'Select a Video Device' popup. This is usually 'USB2.0 ATV'.
+VirtualDub is a program to play video files and display a live video feed from a USB video camera. The VirtualDub program is at 'F:\cudmore\apps\VirtualDub-1.10.4\VirtualDub.exe'.
+
+Open VirtualDub and start a live video feed using 'File - Capture AVI...' and select the correct USB camera with 'Select a Video Device' popup. This is usually 'USB2.0 ATV'.
 
 The video feed will only work if
 
