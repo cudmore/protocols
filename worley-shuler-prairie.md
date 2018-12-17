@@ -79,7 +79,11 @@ The bCapture script will open a live feed of the video camera (the one on top of
 
 **Important** The USB3 camera on top of the scope needs to be plugged into the back of the computer where the USB ports have enough power. The USB plugs on the top/front of the computer do not have enough power for the camera. The symptom is that the camera (and matlab) will randomly lose the camera and when it does it is really annnoying.
 
+**Important** Now that the usb3 camera on top of the scope is plugged into the back of the computer, it needs to be unplugged on top of the scope.
+
 **Important**. If the live vido feed fails, you need to close the window and reopen it by typing 'bCapture' at Matlab command prompt. If this still does not work, unplug the camera USB, reinsert USB and try again. When the live video fails you can visually see this as the specle noise of the video will stop being noticeable.
+
+**If someone wants to be a good colleague, I would appreciate some troubleshooting. Is it the Matlab script that looses the camera? Is it the USB power? Is it the install Windows 7 drivers that came with the camera?**
 
 ### Matlab video detials
 
